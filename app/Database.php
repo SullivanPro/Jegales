@@ -27,22 +27,18 @@ class Database{
         return $this->pdo;
     }
 
+
     public function query($statement, $className){
         $req = $this->getPDO()->query($statement);
         $datas = $req->fetchAll(PDO::FETCH_CLASS, $className); //execute la requette et charge la classe
         return $datas;
     }
 
-    public function prepare($statement, $values, $className, $one = false) {
+    public function prepare($statement, $values, $className, $function="fetchAll") {
         $req = $this->getPDO()->prepare($statement);
         $req->execute($values);
         $req->setFetchMode(PDO::FETCH_CLASS, $className);
-        if($one) {
-            $datas = $req->fetch(); //premiere reponse du tableau
-        } else {
-            $datas = $req->fetchAll(); //totalite du tableau
-        }
-        return $datas;
+        return $req->$function();
 
     }
 }
