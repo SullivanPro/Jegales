@@ -22,6 +22,7 @@ if(ctype_digit($_GET['id'])) {
 
 
 ?>
+
         </div>
     </div>
 </div>

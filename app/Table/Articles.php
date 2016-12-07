@@ -30,5 +30,11 @@ class Articles {
         return $html;
     }
 
+    public static function createArticle($titre,$contenu) {
+        $date = date("Y-m-d H:i:s");
+
+
+    }
+
 }
 
